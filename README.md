@@ -46,7 +46,8 @@ That didn't work too well, so I changed it.
 My script does a lot of preprocessing, which only needs to be run once.
 Once the preprocessing is done we can run the game solver again and again without that overhead.
 
-## Efficiency
+#### Efficiency comparasion of countdownV2Perm.py and countdownV1Recursive.py
+
 Here's some stuff about how efficient my code is, including an analysis of how many calculations my algorithm requires.
 
 ## Results
