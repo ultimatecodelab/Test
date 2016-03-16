@@ -44,7 +44,42 @@ That didn't work too well, so I changed it.
 
 ## Preprocessing
 My script does a lot of preprocessing, which only needs to be run once.
-Once the preprocessing is done we can run the game solver again and again without that overhead.
+Once the preprocessing is done we can run the game solver again and again without that overhead. I am using python pickle module to   for serializing and de-serializing my dictionary. It gives almost constant time to load the dictionary. I have saved the whole 
+dict() object and dumped it. When starts off I am simply loading the pickled file. This is how the preprocessing is done.
+'''
+    import pickle
+    wordmap = dict()
+    
+    def preprocessing():
+    	wordsList = [line.rstrip('\n') for line in open('words.txt')]
+    	for word in wordsList:
+    		#generate the key #generate the value
+    		#key = sum(bytearray(word,'utf8')) #sum of the word, ascii value
+    		key = sorted(word)
+    		sortedKey = ''.join(key)
+    		addToMap(sortedKey,word)
+    
+    #adding ascii value as a key and list of words as values
+    def addToMap(key,value):
+    	if(len(key)>=4 and len(key)<=9):
+    		if key in wordmap:
+    			wordmap.get(key).append(value) #if key exists, get the reference to the list(value) and add it.
+    		else:
+    			wordmap.update({key:[value]})
+    		
+    preprocessing()	
+    pickle.dump(wordmap, open('dict.pickle', 'wb'), -1)
+
+**When you run the above code snippt it will create dict.pickle and you can load in your script like this**
+
+```
+    pickle_in = open("dict.pickle","rb")
+    
+    wordmap = pickle.load(pickle_in)
+```
+    
+**That's all, wordmap (dict) contains all the keys and value :)**
+**countdownV2Perm.py and countdownV1Recursive.py , both are using the same dictonary file. The same pickled file is loaded in both versions**
 
 ## Efficiency comparasion of countdownV2Perm.py and countdownV1Recursive.py
 **countdownV2Perm.py** : This version of algorithms generates the permutations of 9 letters word and for each generated word it checks
