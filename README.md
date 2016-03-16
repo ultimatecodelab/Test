@@ -6,9 +6,9 @@
 ###3: Words List
 ###4: Files and Scripts 
 ###4: Algorithms (Two versions)
-    -CountdownV1Recursive.py
+    -countdownV1Recursive.py
     
-    -CountdownV2Perm.py
+    -countdownV2Perm.py
 ###5: Compare and Contrast of both algorithms
 ###6: References
  
@@ -46,7 +46,13 @@ That didn't work too well, so I changed it.
 My script does a lot of preprocessing, which only needs to be run once.
 Once the preprocessing is done we can run the game solver again and again without that overhead.
 
-#### Efficiency comparasion of countdownV2Perm.py and countdownV1Recursive.py
+## Efficiency comparasion of countdownV2Perm.py and countdownV1Recursive.py
+**countdownV2Perm.py** : This version of algorithms generates the permutations of 9 letters word and for each generated word it checks
+against the dictionary. The key in the dictionary is sorted so whenever the permutations is computed I am first sorting the word and I'm
+checking against the dictionary. If sorted word equals the key in dict, I am iterating through the value(set).
+
+
+
 
 Here's some stuff about how efficient my code is, including an analysis of how many calculations my algorithm requires.
 
